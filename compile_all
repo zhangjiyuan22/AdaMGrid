@@ -26,7 +26,7 @@
 # obtain cpu from 'gcc -march=native -Q --help=target | grep march='
 #gcc -fPIC -Ofast -march=skylake-avx512 -Wall -Wextra -shared chi2_calculator_pipeline.c -I/usr/include/python2.7/ -o chi2_calculator_pipeline.so
 
-gcc -fPIC -Ofast -march=skylake-avx512 -Wall -Wextra -shared chi2_calculator_pipeline_struct.c -I/usr/include/python2.7/ -o chi2_calculator_pipeline_struct.so
+gcc -fPIC -Ofast -march=native -Wall -Wextra -shared chi2_calculator_pipeline_struct.c -o chi2_calculator_pipeline_struct.so
 
 
 
