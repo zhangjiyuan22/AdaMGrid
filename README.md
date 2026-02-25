@@ -109,150 +109,6 @@ Later for points **outside** the map boundary, the interpolation code falls back
 * Edit **line 104** via `threshold_coefficient`
 
 The adaptive refinement aims to satisfy:
-[
-|A_{\rm interp} - A_{\rm VBML}| < \texttt{threshold_coefficient},\sqrt{A}.
-]
-
-### Tune VBMicrolensing numerical settings
-
-* Edit **lines 141–143** to adjust:
-
-  * absolute tolerance
-  * relative tolerance
-  * limb-darkening coefficients
-
-### Change the maximum refinement depth (map layers)
-
-* Edit **line 173** (`max_layer`)
-
-Notes:
-
-* Up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of:
-  [
-  \Delta x \approx \frac{7}{2^{16}} \approx 1\times10^{-4},\theta_{\rm E}.
-  ]
-
----
-
-Yes — you can copy/paste it directly into `README.md`.
-
-Two small tips to avoid GitHub rendering surprises:
-
-1. **Math rendering**
-   GitHub Markdown support for LaTeX is limited and depends on where it’s displayed. If you want maximum compatibility, replace the two LaTeX equations with plain text, e.g.
-
-* `|A_interp - A_VBML| < threshold_coefficient * sqrt(A)`
-* `dx ≈ 7 / 2^16 ≈ 1e-4 thetaE`
-
-(Everything else will render fine.)
-
-2. **Code-block “id=...”**
-   If you copy from my message, remove the `id="..."` part after the triple backticks (that attribute is a UI artifact). Keep it as standard fences:
-
-```bash
-...
-```
-
-Here is the **README-safe** version (ready to paste):
-
-````markdown
-## How to generate a binary-lens magnification map set and run a binary grid search
-
-### Prerequisites
-- Python **≥ 3.7**
-- Python packages: `numpy`, `matplotlib`, `ctypes`, `emcee`
-- `VBMicrolensing` (installed via pip; see below)
-
----
-
-### 1) Clone the repository
-```bash
-git clone https://github.com/zhangjiyuan22/AdaMGrid.git
-cd AdaMGrid
-````
-
-Make sure your Python environment has the required packages (`numpy/matplotlib/ctypes/emcee`) installed.
-
----
-
-### 2) Install VBMicrolensing
-
-```bash
-pip install VBMicrolensing
-```
-
----
-
-### 3) Compile the C interpolation code
-
-```bash
-chmod a+x compile_all
-./compile_all
-```
-
-This builds the interpolation utilities used by the map generator.
-
----
-
-### 4) Generate the reusable magnification map set
-
-```bash
-python adaptive_map_generator_VBMicrolensingPython_BinaryMag2.py
-```
-
-#### Default map-set configuration
-
-With the default settings, the script generates a grid of maps over:
-
-* `logs ∈ [-1.5, 1.5]` with `d_logs = 0.05`
-* `logq ∈ [-6.0, 4.0]` with `d_logq = 0.1`
-* `logrho ∈ [-4.0, -1.6]` with `d_logrho = 0.3`
-
-Each map is:
-
-* a **7 × 7 θE** square,
-* centered on the **magnification center**.
-
-For evaluation points **outside** the map boundary, the code falls back to a **single-lens approximation**.
-
-**Resource footprint (default):**
-
-* Total map-set size: **~63 GB**
-* Typical runtime: **~1 hour on a 64-core node**
-
----
-
-## Common configuration edits (recommended)
-
-### Change the map-set name
-
-* Edit **line 14**
-
-### Change parameter ranges / resolutions
-
-* Edit **lines 224–231** to modify:
-
-  * `logs` range and step
-  * `logq` range and step
-  * `logrho` range and step
-
-### Change the number of CPU cores
-
-* Edit **line 301**
-
----
-
-## Advanced controls (usually not needed)
-
-### Change map size
-
-* Edit **line 12** (map side length in units of θE)
-
-### Change interpolation accuracy target
-
-* Edit **line 104** via `threshold_coefficient`
-
-The adaptive refinement aims to satisfy:
 
 * `|A_interp - A_VBML| < threshold_coefficient * sqrt(A)`
 
@@ -263,7 +119,7 @@ The adaptive refinement aims to satisfy:
   * absolute tolerance
   * relative tolerance
   * limb-darkening coefficients
-
+  * 
 ### Change the maximum refinement depth (map layers)
 
 * Edit **line 173** (`max_layer`)
@@ -272,12 +128,4 @@ Notes:
 
 * Up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of:
 * `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
-
-```
-
-If you tell me whether you want GitHub to render the equations nicely, I can give you an alternate version using only plain text (most robust) or using GitHub-flavored math where supported.
-```
-
-
-
 
