@@ -1,7 +1,4 @@
 import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import matplotlib.patches as mpathes
 
 import multiprocessing as mp
 import time
