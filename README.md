@@ -102,7 +102,7 @@ Later for points **outside** the map boundary, the interpolation code falls back
 
 ### Change map size
 
-* Edit **line 12** (map side length in units of θE)
+* Edit **line 12** (0.5 * map side length in units of θE)
 
 ### Change interpolation accuracy target
 
@@ -118,14 +118,13 @@ The adaptive refinement aims to satisfy:
 
   * absolute tolerance
   * relative tolerance
-  * limb-darkening coefficients
-  * 
+  * limb-darkening coefficient
+    
 ### Change the maximum refinement depth (map layers)
 
 * Edit **line 173** (`max_layer`)
 
 Notes:
 
-* Up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of:
-* `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
+* Up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of: `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
 
