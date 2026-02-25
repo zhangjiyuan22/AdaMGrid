@@ -10,7 +10,7 @@ We present AdaMGrid, a grid-search framework that evaluates light curves by inte
 
 Applied to binary-lens events, AdaMGrid reduces a grid search to ≲30 minutes on a 100–core node using CPU-based interpolation and MCMC, and a forthcoming GPU implementation should reduce this to a few minutes. We further outline a path toward triple-lens parameter space exploration: generating of order 10⁸ reusable triple-lens adaptive magnification maps with VBMicrolensing on a CPU cluster, then exploiting GPU-accelerated interpolation and MCMC to bring triple-lens grid search to timescales of several days per event. These capabilities would enable systematic searches for planets in binary systems in archival data, robust re-analyses of known and candidate triple-lens events, and scalable modeling pipelines for upcoming microlensing surveys with Roman, ET, and other facilities. AdaMGrid is released publicly.
 
-## Generate a binary-lens magnification map set and run a binary grid search
+## Generate a resuable binary-lens magnification map set and run a binary grid search
 
 ### Prerequisites
 - Python **≥ 3.7**
@@ -97,4 +97,6 @@ For points **outside** the map boundary, the interpolation code falls back to a 
   * limb-darkening coefficient
 * **Change the maximum refinement depth (map layers):** edit **line 173** (`max_layer`)
   * Note: up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
+ 
+ 
 
