@@ -15,7 +15,11 @@ Applied to binary-lens events, AdaMGrid reduces a grid search to ≲30 minutes o
 1. pip install VBMicrolensing (require python >= 3.7)
 2. chmod a+x compile_all
 3. ./compile_all (to compile the interpolation code written in C)
-4. python adaptive_map_generator_VBMicrolensingPython_BinaryMag2.py to generate resuable binary-lens magnification map set; the default setting leads to a map set with logs in [-1.5, 1.5] with d_logs = 0.05, logq in [-6.0, 4.0] with d_logq = 0.1, logrho in [-4.0, -1.6] with d_logrho = 0.3; each map is a square of 7*7 thetaE; the default map set has size of 63 GB
+4. python adaptive_map_generator_VBMicrolensingPython_BinaryMag2.py to generate resuable binary-lens magnification map set;
+  
+the default setting leads to a map set with logs in [-1.5, 1.5] with d_logs = 0.05, logq in [-6.0, 4.0] with d_logq = 0.1, logrho in [-4.0, -1.6] with d_logrho = 0.3; each map is a square of 7*7 thetaE, centered at magnification center; for points outside the map, we use single lens approximation; the default map set has size of 63 GB
+
+change logs/logq/logrho range and resolution from line 224 to 231; change CPU core used at line 301; change 
 
 
 
