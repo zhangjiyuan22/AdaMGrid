@@ -96,7 +96,5 @@ For points **outside** the map boundary, the interpolation code falls back to a 
   * relative tolerance
   * limb-darkening coefficient
 * **Change the maximum refinement depth (map layers):** edit **line 173** (`max_layer`)
-  Note: up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of
-
-  * `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
+  * Note: up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
 
