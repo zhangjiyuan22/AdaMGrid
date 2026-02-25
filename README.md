@@ -59,7 +59,7 @@ chmod a+x compile_all
 ./compile_all
 ```
 
-This builds the interpolation utilities used by the map generator.
+This builds the interpolation code.
 
 ---
 
@@ -82,7 +82,7 @@ Each map is:
 * a **7 × 7 θE** square,
 * centered on the **magnification center**.
 
-For evaluation points **outside** the map boundary, the code falls back to a **single-lens approximation**.
+Later for points **outside** the map boundary, the interpolation code falls back to a **single-lens approximation**.
 
 **Resource footprint (default):**
 
