@@ -44,8 +44,6 @@ chmod a+x compile_all
 ./compile_all
 ```
 
-This builds the interpolation code.
-
 ---
 
 ### 4) Generate the reusable magnification map set
