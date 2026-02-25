@@ -129,7 +129,7 @@ Notes:
 * Up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of: `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
 
 
-````markdown
+
 # AdaMGrid
 
 ### Adaptive Magnification Map Grid Search code for binary/triple lensing running on CPU/GPU
