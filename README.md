@@ -1,8 +1,8 @@
 
 # AdaMGrid
 
-Adaptive magnification-map grid search for binary/triple microlensing on CPU/GPU  
-*(Binary-lens grid search on CPU is released; triple-lens grid search on GPU is in development.)*
+##### Adaptive magnification-map grid search for binary/triple microlensing on CPU/GPU  
+##### *(Binary-lens grid search on CPU is released; triple-lens grid search on GPU is in development.)*
 
 Multiple-lens microlensing events (binary and triple lenses) are key probes of cold planets but are difficult to model because their light curves depend on a complex, highly degenerate parameter space. Robust interpretation therefore requires near-full parameter-space searches that are already computationally demanding for binary lenses and, given the larger number of parameters and slower magnification evaluation, not yet feasible for triple lenses. Precomputing reusable magnification maps on a source-plane grid and then evaluating magnifications via interpolation can in principle accelerate searches, but as magnification varies non-uniformly across the source plane, uniform grids are either too coarse near caustics or waste most resolution in smooth regions.
 
