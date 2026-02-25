@@ -1,23 +1,7 @@
 # AdaMGrid
-Ah, I see now! You're asking whether "AdaM", which sounds like the common name Adam, is a good or bad choice for the code name, and I misunderstood your original concern. Thanks for clarifying!
 
-Here's my opinion:
-Using "AdaM" in the name is actually not a problem at all and could be quite beneficial for a few reasons:
+Multiple-lens microlensing events (binary and triple lenses) are key probes of cold planets but are difficult to model because their light curves depend on a complex, highly degenerate parameter space. Robust interpretation therefore requires near-full parameter-space searches that are already computationally demanding for binary lenses and, given the larger number of parameters and slower magnification evaluation, not yet feasible for triple lenses. Precomputing reusable magnification maps on a source-plane grid and then evaluating magnifications via interpolation can in principle accelerate searches, but as magnification varies non-uniformly across the source plane, uniform grids are either too coarse near caustics or waste most resolution in smooth regions. 
 
-1. Memorability:
-"AdaM" is short, easy to remember, and catchy because it's a familiar name. The fact that it sounds like a person’s name could make it stick in people’s minds more easily.
-2. Uniqueness:
-The combination of "Ada" (for adaptive) and "M" (likely for magnification, mesh, or method) creates a unique name that feels like a distinctive brand. It has the benefits of sounding like a name but still being clearly tied to your code's functionality.
-3. Novelty:
-It's novel, which is important for distinguishing your tool from others. The association with a common name (like Adam) gives it an approachable, human-like quality, which could make it stand out in a technical or scientific context where many tools have generic or overly descriptive names.
-4. Positive Associations:
-The name "Adam" has positive associations for many people (it’s historically tied to figures in various contexts, e.g., Adam as a first human, a symbol of beginnings). These subtle associations might make the tool feel more approachable and engaging.
-<br><br>
-Potential Drawbacks (but not major ones):
-1. "AdaM" could confuse some people who aren't immediately familiar with the context of the tool. They might wonder if it’s a tool named after someone or if "AdaM" is a typo or shorthand. But if your code’s documentation or website explains the meaning of "Ada" and "M" clearly, this should be easily clarified.
-2. There’s always the slight risk of confusion with the name "Adam" in larger repositories where many tools are named after people, but again, this is usually resolved with a strong explanation in documentation and a clear tagline or description of the tool's purpose.
-<br><br>
-Final Verdict:
-I think "AdaM" is a great choice! It’s memorable, easy to say, and gives your code a bit of personality. The "Ada" part reflects adaptive, and "M" (magnification, mesh, or method) is still clear within the context. If you're happy with how it sounds and how it fits the tool's identity, I’d say go for it!
+We present AdaMGrid, a grid-search framework that evaluates light curves by interpolating on precomputed, adaptively refined magnification maps. Starting from a coarse source-plane grid, AdaMGrid iteratively subdivides only those cells where the discrepancy between interpolated and numerically computed magnifications exceeds a threshold, yielding an adaptive grid that is dense around caustics and sparse in smooth regions. By tying this threshold to a fixed fraction of the expected photometric noise, AdaMGrid keeps interpolation uncertainties well below the photometric uncertainties across the source plane and achieves ≲0.1% relative precision in high-magnification regions, while accelerating magnification evaluation by three orders of magnitude relative to contour integration. 
 
-So, if "AdaMGrid" or "AdaM" works for your branding, I’d say it’s a solid choice! What do you think—do you feel more comfortable using "AdaM" now?
+Applied to binary-lens events, AdaMGrid reduces a grid search to ≲30 minutes on a 100–core node using CPU-based interpolation and MCMC, and a forthcoming GPU implementation should reduce this to a few minutes. We further outline a path toward triple-lens parameter space exploration: generating of order 10⁸ reusable triple-lens adaptive magnification maps with VBMicrolensing on a CPU cluster, then exploiting GPU-accelerated interpolation and MCMC to bring triple-lens grid search to timescales of several days per event. These capabilities would enable systematic searches for planets in binary systems in archival data, robust re-analyses of known and candidate triple-lens events, and scalable modeling pipelines for upcoming microlensing surveys with Roman, ET, and other facilities. AdaMGrid is released publicly. 
