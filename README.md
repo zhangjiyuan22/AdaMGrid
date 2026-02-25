@@ -88,7 +88,8 @@ For points **outside** the map boundary, the interpolation code falls back to a 
 
 * **Change map size:** edit **line 12** *(0.5 × map side length in units of θE)*
 * **Change interpolation accuracy target:** edit **line 104** via `threshold_coefficient`
-  Target condition:
+
+  * Target condition:
 
   * `|A_interp - A_VBML| < threshold_coefficient * sqrt(A)`
 * **Tune VBMicrolensing numerical settings:** edit **lines 141–143**
