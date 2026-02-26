@@ -299,6 +299,7 @@ if __name__ == '__main__': # variable defined here is global variable
                  'KMTC01_I.pysis.dat', 'KMTC42_I.pysis.dat',\
                  'KMTS01_I.pysis.dat', 'KMTS42_I.pysis.dat']
     fluxnames = []
+    # fluxnames = ['KMTA01_I.pysis.dat'] # if 'KMTA01_I.pysis.dat' is in flux while others are in magnitude, then do this
     errfac =    [1.033, 1.071, 1.000, 1.038, 1.110, 1.056]
     errsys =    [0.000, 0.000, 0.000, 0.000, 0.000, 0.000]
     inverse  =  ['False', 'False', 'False', 'False', 'False', 'False']
