@@ -98,10 +98,24 @@ For points **outside** the map boundary, the interpolation code falls back to a 
   * limb-darkening coefficient
 * **Change the maximum refinement depth (map layers):** edit **line 173** (`max_layer`)
   * Note: up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
- 
- change map set used at line 14; 
+
+ To run a grid search for a binary lens event: 
+ first prepare the light curve data, put into ./data/xxxxxx(name_of_your_event)/; you can bin the data for non-anomaly region in advance to speed up the grid search; 
+ then for each event copy a new binary_grid_xxxxxx(name_of_your_event)_fast_struct.py from the current binary_grid_kb240697_fast_struct.py; 
+ in that file, change which map set to use at line 14; 
  change alpha initial guess at line 205 and 206, currently 16 alpha initial guesses equally spaced in [0,2pi); 
- change MCMC nburn_in and nsample at line 223 and 224, default to 500+1000 step; 
+ change MCMC nburn_in and nsample at line 223 and 224, default to 300+500 step; 
+ chenge the event name at line 294, change event's alpha/dec at line 295/296 (in degree), change light curve files at line 298, the format should be in column 0/1/2 is hjd/magnitude/magnitude_error, while hjd-2450000 or hjd-2400000 is automatically converted, while hjd/flux/flux_error is also allowed by repeting the light curve file name at line 299, and jd is allowed by specifying at line 304; set the k and emin (Yee et al. 2012) for each light curve file at line 301 and 302; 
+
+ change the initial guess of t0/u0/tE at line 308-310, which typically from single fit with the anomaly excluded; for some stellar binary events that u0 and tE can not be robustly obtained from single fit, multiple grid search with different u0 intial guess might be needed; 
+
+ change the time window for the light curve data used for grid search at line 314-315, which is in format of HJD-2450000; 
+
+ change whether use fmin+MCMC or just fmin at line 318; using fmin+MCMC is dozens times slower than just fmin (but fmin+MCMC is still already fast, like 30 min per event), but is strongly recommended, as fmin may fail catastrophyilly for bad initial guess, while MCMC is much more robust; the nburn_in and nsample of MCMC might be adjusted (line 223 and 224); we recommend hot MCMC, change the hot MCMC factor at line 321, where factor=0.1 means the chi2 is multiplied by 0.1;
+
+ change the logs/logq/logrho range and resolution used from line 336 to 342
+
+ change the number of CPU core used and file's save name at line 481 and 488
  
  
 
