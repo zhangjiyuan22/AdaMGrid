@@ -220,8 +220,8 @@ def grid(p):
             #parmbest,chi2min,iter_number,funcalls,warnflag,allevcs = fmin(chi2,tempparms,args=(data,all_layer_corner_mag,all_layer_whether_densed,all_layer_sequence_number_in_next_layer_file,layer_length_accumulated_in_front_of_each_layer,box_size,False),full_output=True,retall=True,disp=0,maxiter=500,maxfun=1000)
             parmbest,chi2min,iter_number,funcalls,warnflag,allevcs = fmin(chi2,tempparms,args=(data, one_map_all_layer_struct, layer_length_accumulated_in_front_of_each_layer,box_size,False,s,q),full_output=True,retall=True,disp=0,maxiter=500,maxfun=1000)
             if use_mcmc==True:
-                nburn_in = 500
-                nsample = 1000
+                nburn_in = 300
+                nsample = 500
                 ndim = len(parmbest)
                 nwalkers = 2*ndim
                 pos = [parmbest+1e-4*np.random.randn(ndim) for i in range(nwalkers)]
@@ -291,30 +291,28 @@ if __name__ == '__main__': # variable defined here is global variable
                     ("corner_mag_3", ctypes.c_float),
                     ("corner_mag_4", ctypes.c_float)]
 
-    eventname = 'kb251616'
+    eventname = 'kb240697'
     source_alpha = 265.86424999999997
     source_delta = -24.88635
     datadir = './data/%s/'%eventname
-    datanames = ['KMTA01_I.pysis.dat', 'KMTA42_I.pysis.dat',\
-                 'KMTC01_I.pysis.dat', 'KMTC42_I.pysis.dat',\
-                 'KMTS01_I.pysis.dat', 'KMTS42_I.pysis.dat']
-    fluxnames = []
-    # fluxnames = ['KMTA01_I.pysis.dat'] # if 'KMTA01_I.pysis.dat' is in flux while others are in magnitude, then do this
-    errfac =    [1.033, 1.071, 1.000, 1.038, 1.110, 1.056]
-    errsys =    [0.000, 0.000, 0.000, 0.000, 0.000, 0.000]
-    inverse  =  ['False', 'False', 'False', 'False', 'False', 'False']
-    jd_to_hjd = ['False', 'False', 'False', 'False', 'False', 'False']
+    datanames = ['KB240697-KMTC19_I.pysis5', 'KB240697-KMTS19_I.pysis5', 'KB240697_lsc01.mag', 'KB240697_cpt01.mag', 'KB240697-OPD.pysis5']
+    fluxnames = [] 
+    # fluxnames = ['KB240697-OPD.pysis5'] # if 'KB240697-OPD.pysis5' is in flux while others are in magnitude, then do this
+    errfac =    [0.870, 1.051, 1.090, 0.993, 1.019]
+    errsys =    [0.003, 0.000, 0.000, 0.004, 0.000]
+    inverse  =  ['False', 'False', 'False', 'False', 'False']
+    jd_to_hjd = ['False', 'False', 'False', 'False', 'False']
 
 
 
-    t0 = 10857.76
-    u0 = 0.003
-    te = 17.55
+    t0 = 10425.742045
+    u0 = 0.007658
+    te = 14.588909
 
 
     
-    tbegin = 10820.0
-    tend = 10900.0
+    tbegin = 10300.0
+    tend = 10500.0
     test = False
 
     use_mcmc = True
@@ -412,7 +410,10 @@ if __name__ == '__main__': # variable defined here is global variable
         iname = datanames[i]
 
         ### special dealing ###
-        tempdata = np.loadtxt(datadir+iname,usecols=(0,1,2))
+        if iname[-6:] == 'pysis5' : 
+            tempdata = np.loadtxt(datadir+iname,usecols=(1,11,12))
+        else :
+            tempdata = np.loadtxt(datadir+iname,usecols=(0,1,2))
         ###       end       ###
         
         if tempdata[0,0]>2450000:
