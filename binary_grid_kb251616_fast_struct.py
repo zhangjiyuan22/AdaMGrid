@@ -333,45 +333,14 @@ if __name__ == '__main__': # variable defined here is global variable
 
     def select(ilogs,ilogq,ilogrho):
         ls,lq,lrho = round(ilogs,5),round(ilogq,5),round(ilogrho,5)
-        #logs_range = [-0.034-0.025,-0.034+0.025]
-        #logq_range = [-3.773-0.25,-3.773+0.25]
-        #logrho_range = [-2.487-0.25,-2.487+0.25]
-        """
-        logs_range   = [-0.05,-0.05]
-        logq_range   = [-4.0,-4.0]
-        #logrho_range = [-4.0,-1.6]
-        logrho_range = [-2.5,-2.5]
-        logs_step = 0.05
-        logq_step = 0.2
-        logrho_step = 0.3
-        """
-
-        
-        # logs_range   = [-1.50,1.30]
-        # #logs_range   = [1.2,1.30]
-        # logq_range   = [-6.0,0.0]
-        # logrho_range = [-4.0,-1.6]
-        # logs_range   = [0.05,1.30]
-        # logq_range   = [0.1,4.0]
-        # logrho_range = [-4.0,-1.6]
 
         logs_range   = [-1.50,1.50]
         logq_range   = [-6.0,4.0]
         logrho_range = [-4.0,-1.6]
-        # logrho_range = [-3.85,-1.45]
         
         logs_step = 0.05
         logq_step = 0.1
         logrho_step = 0.3
-
-        # logs_range   = [-0.2,0.2]
-        # logq_range   = [-4.5,-3.0]
-        # logrho_range = [-3.1,-1.9]
-        
-        # logs_step = 0.002
-        # logq_step = 0.05
-        # logrho_step = 0.1
-        
 
         logss = np.round(np.arange(logs_range[0],logs_range[1]+0.5*logs_step,logs_step),5)
         logqs = np.round(np.arange(logq_range[0],logq_range[1]+0.5*logq_step,logq_step),5)
@@ -413,71 +382,20 @@ if __name__ == '__main__': # variable defined here is global variable
     
     for i,pi in enumerate(parms):
         ilogs,ilogq,ilogrho = pi
+         
+        fp = mapdir + "%s.npz"%i
+        if not os.path.isfile(fp):
+            print('map: %s do not exist, so skips'%pi)
+            continue
         
-        if map_set_name == 'kb220440_publish_sparse_close' :
-            if i == 4642 or i == 11663 or i == 12174 :
-                continue
-            #f = np.load(mapdir+"%s.npz"%i,allow_pickle=True)
-            #f.close()
-            if select(ilogs,ilogq,ilogrho): # == True:
-                args.append(i)
-                parm_select.append([ilogs,ilogq,ilogrho])
-                p.append([i,ilogs,ilogq,ilogrho])
-            else:
-                continue
+        if select(ilogs,ilogq,ilogrho): # == True:
+            args.append(i)
+            parm_select.append([ilogs,ilogq,ilogrho])
+            p.append([i,ilogs,ilogq,ilogrho])
+        else:
+            continue
 
-        elif map_set_name == 'VBBLPython_logs_minus1p5_to_1p3_dlogs_0p05_logq_minus6_to_minus0_dlogq_0p1_logrho_minus4p0_to_minus1p6_dlogrho_0p3_layer_16_boxsize_3p5' :
-            if i == 12004 or i == 12012 or i == 12014 or\
-               i == 12023 or i == 12068 or i == 13110 or\
-               i == 13112 or i == 13121 or i == 13661 or\
-               i == 7028 or i == 7568 or i == 8117 or\
-               i == 8135 or i == 8675 or i == 8684 or i== 9215 :
-                continue
-            #f = np.load(mapdir+"%s.npz"%i,allow_pickle=True)
-            #f.close()
-            if select(ilogs,ilogq,ilogrho): # == True:
-                args.append(i)
-                parm_select.append([ilogs,ilogq,ilogrho])
-                p.append([i,ilogs,ilogq,ilogrho])
-            else:
-                continue
 
-        elif map_set_name == 'VBMicrolensing5p0Python_logs_minus1p5_to_1p5_dlogs_0p05_logq_minus6_to_4_dlogq_0p1_logrho_minus4p0_to_minus1p6_dlogrho_0p3_layer_16_boxsize_3p5': 
-            if select(ilogs,ilogq,ilogrho): # == True:
-                args.append(i)
-                parm_select.append([ilogs,ilogq,ilogrho])
-                p.append([i,ilogs,ilogq,ilogrho])
-            else:
-                continue
-        elif map_set_name == 'VBMicrolensing5p0Python_logs_minus1p5_to_1p5_dlogs_0p05_logq_minus6_to_4_dlogq_0p1_logrho_minus3p85_to_minus1p45_dlogrho_0p3_layer_16_boxsize_3p5': 
-            if select(ilogs,ilogq,ilogrho): # == True:
-                args.append(i)
-                parm_select.append([ilogs,ilogq,ilogrho])
-                p.append([i,ilogs,ilogq,ilogrho])
-            else:
-                continue
-        elif map_set_name == 'VBMicrolensing5p0Python_logs_minus0p2_to_0p2_dlogs_0p002_logq_minus4p5_to_minus3p0_dlogq_0p05_logrho_minus3p1_to_minus1p9_dlogrho_0p1_layer_16_boxsize_3p5': 
-            if select(ilogs,ilogq,ilogrho): # == True:
-                args.append(i)
-                parm_select.append([ilogs,ilogq,ilogrho])
-                p.append([i,ilogs,ilogq,ilogrho])
-            else:
-                continue
-                
-        else : 
-            try:
-                f = np.load(mapdir+"%s.npz"%i,allow_pickle=True)
-                #f.close()
-                if select(ilogs,ilogq,ilogrho): # == True:
-                    args.append(i)
-                    parm_select.append([ilogs,ilogq,ilogrho])
-                    p.append([i,ilogs,ilogq,ilogrho])
-                else:
-                    continue
-
-            except:
-                print('map: %s do not exist, so skips'%pi)
-                continue
         
 
     '''hongjing: pick out a fraction of parms '''
@@ -493,11 +411,7 @@ if __name__ == '__main__': # variable defined here is global variable
         iname = datanames[i]
 
         ### special dealing ###
-        if iname[-6:] == 'pysis5' : 
-            tempdata = np.loadtxt(datadir+iname,usecols=(1,11,12))
-        else :
-            tempdata = np.loadtxt(datadir+iname,usecols=(0,1,2))
-        #tempdata = np.loadtxt(datadir+iname,usecols=(0,1,2))  # .pysis.dat
+        tempdata = np.loadtxt(datadir+iname,usecols=(0,1,2))
         ###       end       ###
         
         if tempdata[0,0]>2450000:
@@ -510,12 +424,8 @@ if __name__ == '__main__': # variable defined here is global variable
                 hjd.append(pyasl.helio_jd(t+50000,source_alpha,source_delta)-50000)
             tempdata[:,0] = hjd
 
-        ## jiyuan: don't apply cut to Decam data
-        if iname[:14] == 'KB251616_DECam' :
-            print('donot apply cut to Decam data')
-        else: 
-            arg = (tempdata[:,0]>tbegin)*(tempdata[:,0]<tend)
-            tempdata = tempdata[arg]
+        arg = (tempdata[:,0]>tbegin)*(tempdata[:,0]<tend)
+        tempdata = tempdata[arg]
 
         
         if len(tempdata)==0:
@@ -575,49 +485,10 @@ if __name__ == '__main__': # variable defined here is global variable
         #results = np.array(results,dtype='float')
         results = np.vstack(results)
         print (results)
-        #np.save("result/%s_adaptive_map_test_1222_publish_dense_wide_smallrho_12_alpha.npy"%(eventname),results)
-        #np.save("result/%s_adaptive_map_test_0115_resonant_extreme_detail_mcmc_4_alpha.npy"%(eventname),results)
-        #np.save("result/%s_adaptive_map_test_230916_dense_logrho_minus2p5_mcmc_16_alpha.npy"%(eventname),results)
-        #np.save("result/%s_adaptive_map_test_230916_sparse_wide_mcmc_16_alpha.npy"%(eventname),results)
-        #np.save("result/%s_adaptive_map_test_230916_dense_logrho_minus2p7_to_minus2p6_mcmc_16_alpha.npy"%(eventname),results)
         
-        #np.save("result/%s_pipeline_test_231113_sparse_wide_mcmc_16_alpha_logq_minus6_to_minus4.npy"%(eventname),results)
-        #np.save("result/%s_pipeline_test_231114_sparse_close_mcmc_16_alpha_logq_minus4_to_minus2.npy"%(eventname),results)
-        #np.save("result/%s_pipeline_test_231130_sparse_close_mcmc_16_alpha_logq_minus6_to_minus0.npy"%(eventname),results)
-        #np.save("result/%s_pipeline_test_231202_sparse_closewide_boxsize10_layer15_mcmc_16_alpha_logq_minus6_to_minus0.npy"%(eventname),results)
-        #np.save("result/%s_pipeline_test_231202_sparse_wide_boxsize10_layer15_mcmc_16_alpha_logq_0_to_plus4.npy"%(eventname),results)
-        #np.save("result/%s_pipeline_test_231203_sparse_closewide_boxsize10_layer15_mcmc_16_alpha_logq_minus6_to_minus0_without_peak.npy"%(eventname),results)
-        #np.save("result/%s_pipeline_test_231213_sparse_wide_boxsize3p5_layer16_mcmc_16_alpha_logq_minus6_to_0_dlogq_0p2.npy"%(eventname),results)
-        #np.save("result/%s_pipeline_test_240103_sparse_close_boxsize3p5_layer16_mcmc_16_alpha_logq_minus6_to_0_dlogq_0p2.npy"%(eventname),results)
-        
-        #np.save("result/%s_pipeline_struct_test_250221_sparse_boxsize3p5_layer16_mcmc_16_alpha.npy"%(eventname),results)
-        #np.save("result/%s_pipeline_struct_test_250224_sparse_boxsize3p5_layer16_mcmc_16_alpha.npy"%(eventname),results)
-        
-        # np.save("result/%s_pipeline_struct_test_250910_sparse_boxsize3p5_layer16_mcmc_16_alpha.npy"%(eventname),results)
-        # np.save("result/%s_pipeline_struct_test_251223_dense_boxsize3p5_layer16_mcmc_16_alpha.npy"%(eventname),results)
-        np.save("result/%s_pipeline_struct_test_251223_sparse_boxsize3p5_layer16_mcmc_16_alpha.npy"%(eventname),results)
-
-        #np.save("result/%s_pipeline_struct_test_240427_sparse_wide_boxsize3p5_layer16_mcmc_16_alpha_logq_minus6_to_0_dlogq_0p1.npy"%(eventname),results)
+        np.save("result/%s_pipeline_struct_test_boxsize3p5_layer16_mcmc_16_alpha.npy"%(eventname),results)
         
     exit(0)
-
-### time needed: 
-### I can benchmark using this event
-
-### 9916 point 
-### needs 13.3 s for one alpha, 
-### 9916point * 1500step * 8walker = 1.19e8 interpolations
-
-### thus 112 ns for one interpolation
-    
-### empirical formula    
-### Time = Ndata * Nmap * Nalpha / Nthread / 6.8e7 * 24 (hour)
-#    9916*10294*16/192 /6.8e7 * 24 = 3.00 hour 
-
-### Sirius with 96 threads used to achieve 9.6e7
-### now Sirius with 192 threads can achieve 6.8e7 (used to be 4.8e7 ?)
-
-### 10294 map * 16alpha / 192 thread * 13.3 s = 3.17 hour
 
 
 
