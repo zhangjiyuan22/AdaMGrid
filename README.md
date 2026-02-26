@@ -1,5 +1,10 @@
 # AdaMGrid
 
+<p align="center">
+  <img src="assets/fig_1.png" width="49%" alt="Triple Magnification Map">
+  <img src="assets/fig_2.png" width="49%" alt="Adaptive map refinement">
+</p>
+
 ### Adaptive magnification-map grid search for binary/triple microlensing on CPU/GPU  
 ### *(Binary-lens grid search on CPU is released; triple-lens grid search on GPU is in development.)*
 
