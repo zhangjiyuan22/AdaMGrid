@@ -1,8 +1,8 @@
 # AdaMGrid
 
 <p align="center">
-  <img src="assets/Picture_1.png" width="49%" alt="Triple Magnification Map">
-  <img src="assets/Picture_2.png" width="49%" alt="Adaptive map refinement">
+  <img src="assets/Picture1.png" width="49%" alt="Triple Magnification Map">
+  <img src="assets/Picture2.png" width="49%" alt="Adaptive map refinement">
 </p>
 
 ### Adaptive magnification-map grid search for binary/triple microlensing on CPU/GPU  
