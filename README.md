@@ -11,6 +11,7 @@ We present AdaMGrid, a grid-search framework that evaluates light curves by inte
 Applied to binary-lens events, AdaMGrid reduces a grid search to ≲30 minutes on a 100–core node using CPU-based interpolation and MCMC, and a forthcoming GPU implementation should reduce this to a few minutes. We further outline a path toward triple-lens parameter space exploration: generating of order 10⁸ reusable triple-lens adaptive magnification maps with VBMicrolensing on a CPU cluster, then exploiting GPU-accelerated interpolation and MCMC to bring triple-lens grid search to timescales of several days per event. These capabilities would enable systematic searches for planets in binary systems in archival data, robust re-analyses of known and candidate triple-lens events, and scalable modeling pipelines for upcoming microlensing surveys with Roman, ET, and other facilities. AdaMGrid is released publicly.
 
 ## Generate a resuable binary-lens magnification map set and run a binary grid search
+(point out we only need to generate map set for one time, and reuse it for each binary lens grid search)
 
 ### Prerequisites
 - Python **≥ 3.7**
@@ -70,7 +71,7 @@ For points **outside** the map boundary, the interpolation code falls back to a 
 **Resource footprint (default):**
 
 * Total map-set size: **~63 GB**
-* Typical runtime: **~4 hour on a 96-core node**
+* Typical runtime: **~4 hour on a 96-core node**(might be a tail that a tiny portion of map need much longer time than others, so you can terminate the program earlier like if 99.9% maps have been generated; by checking the real-time file number in the ./map_set_VBMicrolensing5p0Python_logs_minus1p5_to_1p5_dlogs_0p05_logq_minus6_to_4_dlogq_0p1_logrho_minus4p0_to_minus1p6_dlogrho_0p3_layer_16_boxsize_3p5/ through ls -l | grep "^-" | wc -l command, the total number of map for the default map set is 33993)
 
 #### 4.2 Configuration edits (apply to Step 4)
 
