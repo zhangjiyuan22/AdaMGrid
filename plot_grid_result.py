@@ -163,7 +163,7 @@ ax_sq.plot(theoretical_logs_wide_array, theoretical_logq_array, linewidth = 1.2 
 
 
 
-plt.savefig('%s/%s_%s.pdf'%(dirpath,eventname,rname[0]),dpi=300,bbox_inches='tight')
+plt.savefig('%s/%s_%s.png'%(dirpath,eventname,rname[0]),dpi=300,bbox_inches='tight')
 # plt.show()
 
 print(len(result))
