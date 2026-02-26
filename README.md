@@ -70,7 +70,7 @@ For points **outside** the map boundary, the interpolation code falls back to a 
 **Resource footprint (default):**
 
 * Total map-set size: **~63 GB**
-* Typical runtime: **~1 hour on a 64-core node**
+* Typical runtime: **~4 hour on a 96-core node**
 
 #### 4.2 Configuration edits (apply to Step 4)
 
