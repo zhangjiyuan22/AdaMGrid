@@ -14,7 +14,7 @@ Applied to binary-lens events, AdaMGrid reduces a grid search to ≲30 minutes o
 
 ### Prerequisites
 - Python **≥ 3.7**
-- Python packages: `numpy`, `matplotlib`, `ctypes`, `emcee`
+- Python packages: `numpy`, `scipy`, `matplotlib`, `ctypes`, `emcee`, `PyAstronomy`
 - `VBMicrolensing` (installed via pip; see below)
 
 ---
@@ -97,6 +97,10 @@ For points **outside** the map boundary, the interpolation code falls back to a 
   * limb-darkening coefficient
 * **Change the maximum refinement depth (map layers):** edit **line 173** (`max_layer`)
   * Note: up to **16 layers** (with a 7 × 7 θE map) yields a finest spatial resolution of `dx ≈ 7 / 2^16 ≈ 1e-4 θE`
+ 
+ change map set used at line 14; 
+ change alpha initial guess at line 205 and 206, currently 16 alpha initial guesses equally spaced in [0,2pi); 
+ change MCMC nburn_in and nsample at line 223 and 224, default to 500+1000 step; 
  
  
 
