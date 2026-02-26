@@ -6,10 +6,10 @@ import multiprocessing as mp
 import emcee
 #from mpi4py import MPI
 from PyAstronomy import pyasl
+import os
 #Chi2Lib = ctypes.cdll.LoadLibrary('./chi2_calculator.so')
 #Chi2Lib = ctypes.cdll.LoadLibrary('./chi2_calculator_pipeline.so') # C version, not C++
 Chi2Lib = ctypes.cdll.LoadLibrary('./chi2_calculator_pipeline_struct.so') # C version, not C++
-
 
 map_set_name = 'VBMicrolensing5p0Python_logs_minus1p5_to_1p5_dlogs_0p05_logq_minus6_to_4_dlogq_0p1_logrho_minus4p0_to_minus1p6_dlogrho_0p3_layer_16_boxsize_3p5'
 
