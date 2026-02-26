@@ -1,7 +1,5 @@
 import numpy as np
-#from ctypes import *
 import ctypes
-#import ReadBinary as RB
 from scipy.optimize import fmin
 import time 
 import multiprocessing as mp
@@ -12,24 +10,9 @@ from PyAstronomy import pyasl
 #Chi2Lib = ctypes.cdll.LoadLibrary('./chi2_calculator_pipeline.so') # C version, not C++
 Chi2Lib = ctypes.cdll.LoadLibrary('./chi2_calculator_pipeline_struct.so') # C version, not C++
 
-#map_set_name = 'VBBLPython_logs_minus1p5_to_1p3_dlogs_0p05_logq_minus6_to_minus0_dlogq_0p1_logrho_minus4p0_to_minus1p6_dlogrho_0p3_layer_16_boxsize_3p5'
-#map_set_name = 'VBBLPython_logs_0p05_to_1p3_dlogs_0p05_logq_0p1_to_4_dlogq_0p1_logrho_minus4p0_to_minus1p6_dlogrho_0p3_layer_16_boxsize_3p5'
 
 map_set_name = 'VBMicrolensing5p0Python_logs_minus1p5_to_1p5_dlogs_0p05_logq_minus6_to_4_dlogq_0p1_logrho_minus4p0_to_minus1p6_dlogrho_0p3_layer_16_boxsize_3p5'
-# map_set_name = 'VBMicrolensing5p0Python_logs_minus1p5_to_1p5_dlogs_0p05_logq_minus6_to_4_dlogq_0p1_logrho_minus3p85_to_minus1p45_dlogrho_0p3_layer_16_boxsize_3p5'
-# map_set_name = 'VBMicrolensing5p0Python_logs_minus0p2_to_0p2_dlogs_0p002_logq_minus4p5_to_minus3p0_dlogq_0p05_logrho_minus3p1_to_minus1p9_dlogrho_0p1_layer_16_boxsize_3p5'
 
-#map_set_name = 'kb220440_publish_sparse_wide'
-#map_set_name = 'kb221684_logs_minus1p5_to_0p65_dlogs_0p05_logq_minus6_to_minus0_dlogq_0p2_logrho_minus3p7_to_minus1p6_dlogrho_0p3_layer_15_boxsize_10'
-#map_set_name = 'kb221684_logs_minus1p5_to_0p65_dlogs_0p05_logq_minus6_to_minus0_dlogq_0p2_logrho_minus1p3_to_minus0p7_dlogrho_0p3_layer_15_boxsize_10'
-#map_set_name = 'kb221684_logs_0_to_0p9_dlogs_0p05_logq_0_to_plus4_dlogq_0p2_logrho_minus3p7_to_minus1p6_dlogrho_0p3_layer_15_boxsize_10'
-#map_set_name = 'kb210736_logs_0_to_0p65_dlogs_0p01_logq_minus6_to_minus2_dlogq_0p1_logrho_minus3p7_to_minus1p6_dlogrho_0p3_layer_12'
-#map_set_name = 'kb210736_logs_minus0p65_to_0_dlogs_0p01_logq_minus6_to_minus2_dlogq_0p05_logrho_minus3p7_to_minus1p6_dlogrho_0p3_layer_12'
-#map_set_name = 'kb220440_publish_dense_wide'                                               #down to -5.2
-#map_set_name = 'kb231431_logs_minus0p15_to_0p15_logq_minus5p2_to_minus3p5_logrho_minus2p5' #down to -5.2
-#map_set_name = 'kb231431_logs_minus0p15_to_0p15_logq_minus5p2_to_minus3p5_logrho_minus2p7_to_minus2p6' #down to -5.2
-#map_set_name = 'kb220440_resonant_extreme_detail'
-#map_set_name = 'kb220886_dense'
 
 #def chi2(tempparms,data, all_layer_corner_mag,all_layer_whether_densed,all_layer_sequence_number_in_next_layer_file,layer_length_accumulated_in_front_of_each_layer,box_size,use_mcmc):
 def chi2(tempparms,data, one_map_all_layer_struct, layer_length_accumulated_in_front_of_each_layer,box_size,use_mcmc,s,q):
@@ -105,10 +88,7 @@ def chi2(tempparms,data, one_map_all_layer_struct, layer_length_accumulated_in_f
                             layer_length_accumulated_in_front_of_each_layer,\
                             box_size_final, ip, s_final, q_final)
         #end   = time.time_ns()
-        
-        
-        #if len(idata)==887:
-        #    Chi2Lib.wrapprintlc(hjds,nhjd,initial,all_layer_corner_mag,all_layer_whether_densed,all_layer_sequence_number_in_next_layer_file,layer_length_accumulated_in_front_of_each_layer,box_size_final)
+
         
         if ichi2.value <0 :
             chi2 = np.inf
@@ -138,13 +118,9 @@ def grid(p):
     rho = 10**logrho
     print(p)
 
-    """jiyuan"""
-    #q = 10**parms[n][1]
-    """end"""
     try:
         print (n)
         global use_mcmc
-        #mapdir = "./map_set_kb220371_version2/"#test/"
         
         map_content = np.load(mapdir+"%s.npz"%n,allow_pickle=True)
         all_layer_corner_mag_raw = map_content['all_layer_corner_mag']
@@ -170,11 +146,6 @@ def grid(p):
         for i in range(nlayer):
             layer_length_accumulated_in_front_of_each_layer[i] = layer_length_accumulated_in_front_of_each_layer_raw[i]
 
-
-
-
-
-        
 
         ### using following too see the ctypes.c_bool is aligned to 4 bytes ###
         #print(whether_offset_4mag.whether_densed)
@@ -230,22 +201,16 @@ def grid(p):
             data1[n] = data_raw[filelength+n]
         """
         
-        #shifttype = ctypes.c_float*2
-        #shift_c = shifttype()
-        #shift_c[0] = shift_x
-        #shift_c[1] = shift_y
-        #nalpha = 4
-        #alphalist = [240.5,241.0,241.5,242.0]
+        
         nalpha = 16
         alphalist = np.linspace(0,360.0-360.0/nalpha,nalpha)
+        
+        
         allparm = []
         allchi2 = []
         all_iter_number = []
         all_funcalls = []
         
-        """jiyuan"""
-        #q = parms[n][1]
-        """end"""
 
         for alpha in alphalist:
             
@@ -330,15 +295,14 @@ if __name__ == '__main__': # variable defined here is global variable
     source_alpha = 265.86424999999997
     source_delta = -24.88635
     datadir = './data/%s/'%eventname
-    datanames = ['KB251616_DECam_r.dat', 'KB251616_DECam_z.dat',\
-                 'KMTA01_I.pysis.dat', 'KMTA42_I.pysis.dat',\
+    datanames = ['KMTA01_I.pysis.dat', 'KMTA42_I.pysis.dat',\
                  'KMTC01_I.pysis.dat', 'KMTC42_I.pysis.dat',\
-                 'KMTS01_I.pysis.dat', 'KMTS42_I.pysis.dat', 'PB250254_H.dat']
-    fluxnames = ['PB250254_H.dat' ]
-    errfac =    [0.998, 1.204, 1.033, 1.071, 1.000, 1.038, 1.110, 1.056, 0.960]
-    errsys =    [0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000]
-    inverse  =  ['False', 'False', 'False', 'False', 'False', 'False', 'False', 'False', 'False']
-    jd_to_hjd = ['False', 'False', 'False', 'False', 'False', 'False', 'False', 'False', 'False']
+                 'KMTS01_I.pysis.dat', 'KMTS42_I.pysis.dat']
+    fluxnames = []
+    errfac =    [1.033, 1.071, 1.000, 1.038, 1.110, 1.056]
+    errsys =    [0.000, 0.000, 0.000, 0.000, 0.000, 0.000]
+    inverse  =  ['False', 'False', 'False', 'False', 'False', 'False']
+    jd_to_hjd = ['False', 'False', 'False', 'False', 'False', 'False']
 
 
 
@@ -346,11 +310,8 @@ if __name__ == '__main__': # variable defined here is global variable
     u0 = 0.003
     te = 17.55
 
-    #tbegin = 8150.0
-    #tend = 8450.0
-    #tend = 8300.0
 
-    # n years data
+    
     tbegin = 10820.0
     tend = 10900.0
     test = False
