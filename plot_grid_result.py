@@ -11,7 +11,7 @@ plt.rcParams['ytick.direction'] = 'out'
 
 
 eventname = 'kb240697'
-dirpath = '/work/zhangjiyuan/AdaMGrid/result'
+dirpath = './result'
 rname = ['pipeline_struct_test_boxsize3p5_layer16_mcmc_16_alpha']#name of result files
 
 max_shown = 1000
