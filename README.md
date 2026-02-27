@@ -1,4 +1,12 @@
 # AdaMGrid
+If you use this software, please cite it as: 
+@software{Zhang_AdaMGrid_2026,
+author = {Zhang, Jiyuan},
+month = feb,
+title = {{AdaMGrid}},
+url = {https://github.com/zhangjiyuan22/AdaMGrid},
+year = {2026}
+}
 
 <p align="center">
   <img src="assets/Picture1.png" width="49%" alt="Triple Magnification Map">
