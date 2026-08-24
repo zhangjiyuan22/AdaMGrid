@@ -13,7 +13,7 @@ year = {2026}
   <img src="assets/Picture2.png" width="49%" alt="Adaptive map refinement">
 </p>
 
-youtube video for the principle https://www.youtube.com/v=Z46oa2Tk9r0
+youtube video for the principle https://www.youtube.com/watch?v=Z46oa2Tk9r0
 
 ### Adaptive magnification-map grid search for binary/triple microlensing on CPU/GPU  
 ### *(Binary-lens grid search on CPU is released; triple-lens grid search on GPU is in development.)*
