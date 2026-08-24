@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#SBATCH -q fast
+#SBATCH -J triplemap
+#SBATCH -c 256
+#SBATCH --exclusive
+#SBATCH -o logs_fullset/%x_%A_%a.log
+
+cd /home/maoshudeLab/zhangjy225001/adaptive_map_triple_test
+
+export RUN_MODE=maps
+export JOB_ID=${SLURM_ARRAY_TASK_ID}
+export NUM_JOBS=2000
+
+/usr/bin/python3.9 adaptive_map_generator_VBMLPython_MultiMag2_VBM5p4_shuffle_map_fallback_Nopoly.py
